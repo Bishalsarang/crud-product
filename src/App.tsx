@@ -4,6 +4,8 @@ import { Product } from './types';
 import { getProducts } from './services/productService';
 import ProductsTable from './components/ProductsTable';
 import BasePage from './pages/BasePage';
+import FabButton from './components/FabButton';
+import { GridAddIcon } from '@mui/x-data-grid';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,7 +30,17 @@ function App() {
 
   return (
     <BasePage>
-      <ProductsTable products={products} isLoading={isLoading} />
+      <div>
+        <ProductsTable products={products} isLoading={isLoading} />
+        <FabButton
+          tooltipMessage="Add Product"
+          onClick={() => {
+            console.log('Open dialog to add.');
+          }}
+        >
+          <GridAddIcon />
+        </FabButton>
+      </div>
     </BasePage>
   );
 }
