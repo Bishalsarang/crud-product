@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Product } from './types';
 import { getProducts } from './services/productService';
 import ProductsTable from './components/ProductsTable';
+import BasePage from './pages/BasePage';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,7 +26,11 @@ function App() {
     fetchData();
   }, []);
 
-  return <ProductsTable products={products} isLoading={isLoading} />;
+  return (
+    <BasePage>
+      <ProductsTable products={products} isLoading={isLoading} />
+    </BasePage>
+  );
 }
 
 export default App;

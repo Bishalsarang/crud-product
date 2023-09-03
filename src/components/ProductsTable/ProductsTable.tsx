@@ -58,7 +58,12 @@ export default function ProductsTable({
 
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rows={products} loading={isLoading} columns={columns} />
+      <DataGrid
+        rows={products}
+        loading={isLoading}
+        columns={columns}
+        density={'compact'}
+      />
     </div>
   );
 }
