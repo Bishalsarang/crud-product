@@ -37,6 +37,8 @@ export default function ProductDialog({
         showSuccessMessage('Product created successfully.');
       } catch (error) {
         if (error instanceof Error) {
+          console.log(values);
+
           showErrorMessage('Failed to create product. ' + error.message);
         } else {
           showErrorMessage('Failed to create product.');
