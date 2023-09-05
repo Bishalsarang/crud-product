@@ -1,4 +1,4 @@
-import { axiosInstance } from '../util/http';
+import { axiosInstance } from '../utils/http';
 
 import { CreateProductRequest, Product } from '../types';
 

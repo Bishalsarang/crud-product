@@ -6,42 +6,54 @@ import ProductsTable from './components/ProductsTable';
 import BasePage from './pages/BasePage';
 import FabButton from './components/FabButton';
 import { GridAddIcon } from '@mui/x-data-grid';
+import ProductDialog from './components/ProductDialog';
+import { showErrorMessage } from './utils/toast';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState<boolean>(false);
   const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const productsData = await getProducts();
-        setProducts(productsData);
-      } catch (error) {
-        // Handle errors appropriately
-        console.error('Error fetching products:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const productsData = await getProducts();
+      setProducts(productsData);
+    } catch (error) {
+      showErrorMessage('Error fetching products');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
   return (
-    <BasePage>
-      <div>
-        <ProductsTable products={products} isLoading={isLoading} />
-        <FabButton
-          tooltipMessage="Add Product"
-          onClick={() => {
-            console.log('Open dialog to add.');
-          }}
-        >
-          <GridAddIcon />
-        </FabButton>
-      </div>
-    </BasePage>
+    <>
+      <BasePage>
+        <div>
+          <ProductsTable products={products} isLoading={isLoading} />
+          <FabButton
+            tooltipMessage="Add Product"
+            onClick={() => {
+              setIsCreateDialogOpen(true);
+              fetchData();
+            }}
+          >
+            <GridAddIcon />
+          </FabButton>
+        </div>
+      </BasePage>
+      <ProductDialog
+        isOpen={isCreateDialogOpen}
+        mode={'create'}
+        onClose={() => {
+          setIsCreateDialogOpen(false);
+        }}
+      />
+    </>
   );
 }
 
