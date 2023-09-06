@@ -20,7 +20,7 @@ function App() {
   }>({
     isOpen: false,
     data: {
-      id: null,
+      id: '',
     },
   });
 
@@ -50,7 +50,7 @@ function App() {
   const closeProductDeleteDialog = () => {
     setProductDeleteDialogOptions({
       isOpen: false,
-      data: { id: null },
+      data: { id: '' },
     });
   };
 

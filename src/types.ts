@@ -7,6 +7,6 @@ import {
 
 export type Product = z.infer<typeof productSchema>;
 export type IdParams = {
-  id: string | null;
+  id: string;
 };
 export type CreateProductRequest = z.infer<typeof createProductRequestSchema>;
