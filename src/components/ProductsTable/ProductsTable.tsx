@@ -76,10 +76,11 @@ export default function ProductsTable({
   }, [onDeleteProduct]);
 
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ maxHeight: '80vh', width: '100%' }}>
       <DataGrid
         rows={products}
         loading={isLoading}
+        autoHeight
         columns={columns}
         density="comfortable"
       />
