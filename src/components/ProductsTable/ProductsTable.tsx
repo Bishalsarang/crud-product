@@ -67,15 +67,9 @@ export default function ProductsTable({
         sortable: true,
       },
       {
-        field: 'id',
-        headerName: 'ID',
-        width: 150,
-        sortable: true,
-      },
-      {
         field: 'description',
         headerName: 'Description',
-        width: 300,
+        width: 600,
         sortable: false,
       },
     ];

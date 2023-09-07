@@ -7,8 +7,6 @@ import TextField from '@mui/material/TextField';
 import DialogWrapper from '../Dialog';
 import { CreateProductRequestDTO } from '../../types';
 import { createProductRequestSchema } from '../../schema/productSchema';
-import { createProduct } from '../../services/productService';
-import { showErrorMessage, showSuccessMessage } from '../../utils/toast';
 import Button from '../Button';
 
 import { getBase64 } from '../../utils/misc';
@@ -16,24 +14,17 @@ import { getBase64 } from '../../utils/misc';
 interface ProductDialogProps {
   isOpen?: boolean;
   mode: 'create' | 'edit' | 'delete';
-  data?: CreateProductRequestDTO;
+  data: CreateProductRequestDTO;
   onClose: () => void;
+  onAccept: (values: CreateProductRequestDTO) => void;
 }
 
 export default function ProductDialog({
   isOpen = false,
   mode = 'create',
   onClose,
-  data = {
-    product: {
-      name: '',
-      price: 0,
-      description: '',
-      imageURL: undefined,
-    },
-    base64ImageString: '',
-    filename: 'image',
-  },
+  onAccept,
+  data,
 }: ProductDialogProps) {
   const formik = useFormik({
     initialValues: data,
@@ -61,18 +52,8 @@ export default function ProductDialog({
         return;
       }
 
-      try {
-        await createProduct(values);
-        showSuccessMessage('Product created successfully.');
-      } catch (error) {
-        if (error instanceof Error) {
-          showErrorMessage('Failed to create product. ' + error.message);
-        } else {
-          showErrorMessage('Failed to create product.');
-        }
-      } finally {
-        onClose();
-      }
+      onAccept(values);
+      onClose();
 
       formik.resetForm();
     },
@@ -136,6 +117,7 @@ export default function ProductDialog({
               id="description"
               label="Description"
               variant="standard"
+              multiline
               name="product.description"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
