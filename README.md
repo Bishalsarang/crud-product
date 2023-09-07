@@ -1,46 +1,75 @@
-# Getting Started with Create React App
+# Product CRUD
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple CRUD application to explore serverless framework. The backend for this application is available at https://github.com/Bishalsarang/product-management-serverless-framework
 
-## Available Scripts
+# Screenshots
+![img.png](assets/list-page.png)
+![img.png](assets/add-product.png)
 
-In the project directory, you can run:
+# Live DEMO
+A live demo of the app is available at https://crud-product-eosin.vercel.app/. Please note that since the app is hosted in the free tier, you may experience a cold start.
 
-### `npm start`
+# Tech Stack
+- React
+- TypeScript
+- Material UI
+- Formik
+- Zod
+- Axios
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Features
+- ✅ Client Side Sorting and Filtering
+- ✅ Form Validation using Formik and Zod
+- ✅ Static Test using Eslint, Prettier & Husky
+- ✅ Auto deployment to vercel
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Development
 
-### `npm test`
+To get started with development, clone the repository and install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone git@github.com:Bishalsarang/crud-product.git
+```
 
-### `npm run build`
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To use the app, you will need to set the `REACT_APP_API_BASE_URL` environment variable to the base URL of the vaccine management REST API. This can be done in a `.env` file in the root of the project, like so:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`REACT_APP_API_BASE_URL='http://localhost:3000'`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Alternatively, you can set the environment variable in your environment or in the terminal before starting the development server:
 
-### `npm run eject`
+```bash
+export REACT_APP_API_BASE_URL='http://localhost:3000
+``` 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Then, start the development server with:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+``` 
+This will start the development server at [http://localhost:3000](http://localhost:3000/). Any changes made to the code will automatically be reflected in the browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Running Tests
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run tests, use the following command:
 
-## Learn More
+```bash
+npm test
+``` 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run tests with coverage, use the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm test -- --coverage --watchAll=false
+```
+## Building and Deployment
+
+To build the app for production, use the following command:
+
+```bash
+npm build
+``` 
+This will create a `build` directory .
