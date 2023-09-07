@@ -42,6 +42,19 @@ export default function ProductsTable({
         },
       },
       {
+        field: 'imageURL',
+        headerName: 'Image',
+        width: 100,
+        sortable: false,
+        renderCell: (params) => (
+          <img
+            src={params.value || './no-image.jpg'}
+            alt="Product"
+            style={{ width: '100%', height: '100%' }}
+          />
+        ),
+      },
+      {
         field: 'name',
         headerName: 'Name',
         width: 200,
@@ -65,19 +78,6 @@ export default function ProductsTable({
         width: 300,
         sortable: false,
       },
-      {
-        field: 'imageURL',
-        headerName: 'Image',
-        width: 100,
-        sortable: false,
-        renderCell: (params) => (
-          <img
-            src={params.value}
-            alt="Product"
-            style={{ width: '100%', height: '100%' }}
-          />
-        ),
-      },
     ];
   }, [onDeleteProduct]);
 
@@ -87,7 +87,7 @@ export default function ProductsTable({
         rows={products}
         loading={isLoading}
         columns={columns}
-        density={'compact'}
+        density="comfortable"
       />
     </div>
   );

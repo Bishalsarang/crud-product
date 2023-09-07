@@ -67,7 +67,6 @@ function App() {
             tooltipMessage="Add Product"
             onClick={() => {
               setIsCreateDialogOpen(true);
-              fetchData();
             }}
           >
             <GridAddIcon />
@@ -77,8 +76,9 @@ function App() {
       <ProductDialog
         isOpen={isCreateDialogOpen}
         mode={'create'}
-        onClose={() => {
+        onClose={async () => {
           setIsCreateDialogOpen(false);
+          await fetchData();
         }}
       />
 
@@ -91,7 +91,7 @@ function App() {
             showSuccessMessage(
               `Product with id ${productDeleteDialogOptions.data.id} deleted successfully.`,
             );
-            fetchData();
+            await fetchData();
           } catch (error) {
             if (error instanceof Error) {
               showErrorMessage(
