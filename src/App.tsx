@@ -86,24 +86,22 @@ function App() {
     fetchData();
   };
 
-  const handleDeleteAccept = () => {
-    return async () => {
-      try {
-        await deleteProduct(productDeleteDialogOptions.data.id);
-        showSuccessMessage(
-          `Product with id ${productDeleteDialogOptions.data.id} deleted successfully.`,
+  const handleDeleteAccept = async () => {
+    try {
+      await deleteProduct(productDeleteDialogOptions.data.id);
+      showSuccessMessage(
+        `Product with id ${productDeleteDialogOptions.data.id} deleted successfully.`,
+      );
+      await fetchData();
+    } catch (error) {
+      if (error instanceof Error) {
+        showErrorMessage(
+          `Failed to delete with product id ${productDeleteDialogOptions.data.id} ${error.message}`,
         );
-        await fetchData();
-      } catch (error) {
-        if (error instanceof Error) {
-          showErrorMessage(
-            `Failed to delete with product id ${productDeleteDialogOptions.data.id} ${error.message}`,
-          );
-        }
-      } finally {
-        closeProductDeleteDialog();
       }
-    };
+    } finally {
+      closeProductDeleteDialog();
+    }
   };
 
   return (
